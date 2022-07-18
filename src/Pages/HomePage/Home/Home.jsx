@@ -1,5 +1,6 @@
 import React from "react";
 import Review from "../../../Components/HomePage/Testimonial/Review";
+import SellingFish from "../../../Components/HomePage/Testimonial/SellingFish";
 
 const Home = () => {
   return (
@@ -18,6 +19,9 @@ const Home = () => {
           policies necessary to prevent overfishing and aid the recovery of
           overfished stocks
         </marquee>
+      </div>
+      <div>
+        <SellingFish></SellingFish>
       </div>
       <div className="bg-slate-100">
         <Review />
