@@ -39,8 +39,8 @@ const Review = () => {
               }}
               className="mySwiper"
             >
-              {reviewData.map((name) => (
-                <SwiperSlide key={name._id}>
+              {reviewData.map((review) => (
+                <SwiperSlide key={review._id}>
                   <div className="bg-white min-h-full">
                     <div className="flex flex-col h-full relative">
                       <div className="absolute top-0 left-0 mt-3 ml-4 md:mt-5 md:ml-12">
@@ -56,7 +56,7 @@ const Review = () => {
                       <div className="h-full relative z-10">
                         <div>
                           <p className="text-gray-600 serif font-normal italic px-6 py-6 md:px-16 md:py-10 text-xl md:text-2xl">
-                            {name?.name}
+                            {review?.name}
                           </p>
                         </div>
                       </div>
@@ -69,10 +69,10 @@ const Review = () => {
                         <div className="text-center">
                           <h2 className="text-sm md:text-base font-bold text-gray-700 leading-tight">
                             {" "}
-                            Review Gives {name?.rate} Star
+                            Review Gives {review?.rate} Star
                           </h2>
                           <h2 className="text-sm md:text-base text-center font-bold text-gray-700 leading-tight">
-                            {name?.name}
+                            {review?.description}
                           </h2>
                         </div>
                       </div>
