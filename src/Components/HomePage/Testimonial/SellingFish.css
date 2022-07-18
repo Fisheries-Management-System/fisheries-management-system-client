@@ -1,6 +1,7 @@
 .selling-fish-card-container {
+    padding: 50px 0;
     display: grid;
-    margin: 50px 0;
+    margin: 0;
     grid-row-gap: 50px;
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
@@ -9,11 +10,12 @@
 .selling-fish-card {
     position: relative;
 
-    width: 270px;
+    width: 280px;
     height: 430px;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 
 .fish-img-wrapper {
@@ -31,6 +33,7 @@
     width: 90%;
     margin: 0 5%;
 }
+
 .fish-description-wrapper {
     margin-top: 10px;
 }
@@ -63,6 +66,7 @@
     color: rgb(27, 119, 136);
     font-size: 16px;
 }
+
 .fish-des-text {
     text-align: justify;
     font-size: 15px;
