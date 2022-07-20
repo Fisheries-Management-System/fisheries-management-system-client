@@ -1,6 +1,7 @@
 import React from "react";
 import Review from "../../../Components/HomePage/Testimonial/Review";
-import Banner from "./Banner/Banner";
+import Banner from "../Banner/Banner";
+
 
 
 const Home = () => {

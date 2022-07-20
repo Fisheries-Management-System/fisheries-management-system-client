@@ -1,38 +1,72 @@
-import React from 'react';
+import React from "react";
+import bannerImg1 from "../../../Images/banner/bannerImg1.png";
+import bannerImg2 from "../../../Images/banner/bannerImg2.jpg";
+import bannerImg3 from "../../../Images/banner/bannerImg3.jpg";
+//import Swiper core and required modules
+import { Navigation, Pagination, Autoplay } from "swiper";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
 const Banner = () => {
-    return (
-        <div className="carousel w-full">
-            <div id="slide1" className="carousel-item relative w-full">
-                <img src="https://placeimg.com/800/200/arch" className="w-full" />
-                <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                    <a href="#slide4" className="btn btn-circle">❮</a>
-                    <a href="#slide2" className="btn btn-circle">❯</a>
-                </div>
+  return (
+    <>
+      <Swiper
+        modules={[Navigation, Pagination, Autoplay]}
+        spaceBetween={30}
+        slidesPerView={1}
+        centeredSlides={true}
+        autoplay={{
+          delay: 3500,
+          disableOnInteraction: false,
+        }}
+        navigation={true}
+        pagination={{
+          dynamicBullets: true,
+        }}
+        className="mySwiper"
+      >
+        <SwiperSlide>
+          <div className="w-full">
+            <div className="w-full">
+              <img
+                className="w-full max-h-[70vh]"
+                src={bannerImg1}
+                alt=" Slider"
+              />
             </div>
-            <div id="slide2" className="carousel-item relative w-full">
-                <img src="https://placeimg.com/800/200/arch" className="w-full" />
-                <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                    <a href="#slide1" className="btn btn-circle">❮</a>
-                    <a href="#slide3" className="btn btn-circle">❯</a>
-                </div>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="w-full">
+            <div className="w-full">
+              <img
+                className="w-full max-h-[70vh]"
+                src={bannerImg2}
+                alt=" Slider"
+              />
             </div>
-            <div id="slide3" className="carousel-item relative w-full">
-                <img src="https://placeimg.com/800/200/arch" className="w-full" />
-                <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                    <a href="#slide2" className="btn btn-circle">❮</a>
-                    <a href="#slide4" className="btn btn-circle">❯</a>
-                </div>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="w-full">
+            <div className="w-full">
+              <img
+                className="w-full max-h-[70vh]"
+                src={bannerImg3}
+                alt=" Slider"
+              />
             </div>
-            <div id="slide4" className="carousel-item relative w-full">
-                <img src="https://placeimg.com/800/200/arch" className="w-full" />
-                <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                    <a href="#slide3" className="btn btn-circle">❮</a>
-                    <a href="#slide1" className="btn btn-circle">❯</a>
-                </div>
-            </div>
-        </div>
-    );
+          </div>
+        </SwiperSlide>
+      </Swiper>
+    </>
+  );
 };
 
 export default Banner;
