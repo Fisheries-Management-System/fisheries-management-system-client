@@ -1,5 +1,6 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "./Pages/HomePage/Home/Home";
+import EmployeeLogin from "./Pages/Login/EmployeeLogin";
 import Header from "./Pages/SharedPages/Header/Header";
 import PageNotFound from "./Pages/SharedPages/PageNotFound/PageNotFound";
 
@@ -10,6 +11,7 @@ function App() {
         <Header></Header>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/employee-login" element={<EmployeeLogin />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </div>
