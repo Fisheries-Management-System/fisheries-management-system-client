@@ -8,10 +8,12 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import AddEmployee from "../../AddEmployee/AddEmployee";
 
 const Review = () => {
   return (
     <>
+    <AddEmployee></AddEmployee>
       <div className="pt-28">
         <div className="mt-10  container mx-auto bg-white flex flex-col md:flex-row shadow-lg overflow-hidden ">
           <div className=" w-[100%] relative hidden  py-2 md:py-24 bg-indigo-700 md:w-1/2 lg:flex flex-col item-center justify-center">
@@ -84,6 +86,7 @@ const Review = () => {
           </div>
         </div>
       </div>
+      
     </>
   );
 };
