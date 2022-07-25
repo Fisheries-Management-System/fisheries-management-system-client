@@ -6,14 +6,14 @@ const AddEmployee = () => {
     return (
         <div>
             <div className="container">
-                <h1 class="step step-neutral text-center text-slate-900 text-xl my-4 font-bold">ADD EMPLOYEE</h1>
+                <h1 class="bg-slate-900 w-40 mx-auto py-1 rounded  text-center text-white my-8 font-bold">ADD EMPLOYEE</h1>
             <ul class="steps w-full">
                <li data-content="1" class="step step-neutral text-slate-900 text-sm font-bold"><span className=" text-green-400 text-2xl">< BiBookmark/> </span>EMPLOYEE</li>
                <li data-content="2" class="step step-neutral text-slate-900 text-sm font-bold"><span className=" text-green-400 text-2xl">< FiUserPlus/> </span> ACCOUNT</li>
                <li data-content="3" class="step step-neutral text-slate-900 text-sm font-bold"><span className=" text-green-400 text-2xl">< MdOutlineConfirmationNumber/> </span>CONFIRM</li>
  
            </ul>
-             <div className="my-4 mx-48">
+             <div className="my-8 mx-44">
                 <form>
                     <div className="grid grid-cols-2">
                 <div>
