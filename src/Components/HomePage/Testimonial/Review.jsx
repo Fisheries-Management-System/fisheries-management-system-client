@@ -12,7 +12,7 @@ import "swiper/css/scrollbar";
 const Review = () => {
   return (
     <>
-      <div className="pt-28">
+      <div className="pt-2">
         <div className="mt-10  container mx-auto bg-white flex flex-col md:flex-row shadow-lg overflow-hidden ">
           <div className=" w-[100%] relative hidden  py-2 md:py-24 bg-indigo-700 md:w-1/2 lg:flex flex-col item-center justify-center">
             <div className="absolute top-0 left-0 z-10 grid-indigo w-16 h-16 md:w-40 md:h-40 md:ml-20 md:mt-24"></div>

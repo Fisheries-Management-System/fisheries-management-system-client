@@ -1,9 +1,12 @@
 import React from "react";
 import Review from "../../../Components/HomePage/Testimonial/Review";
-
+import Banner from "../../../Components/Banner/Banner";
+import FAQs from "../../../Components/FAQs/FAQs";
+import FeaturedProducts from "../../../Components/FeaturedProduct/FeaturedProduct";
 const Home = () => {
   return (
     <>
+      <Banner />
       <div
         style={{
           backgroundColor: "green",
@@ -19,8 +22,14 @@ const Home = () => {
           overfished stocks
         </marquee>
       </div>
+      <div>
+        <FeaturedProducts />
+      </div>
       <div className="bg-slate-100">
         <Review />
+      </div>
+      <div>
+        <FAQs />
       </div>
     </>
   );
