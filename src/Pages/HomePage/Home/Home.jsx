@@ -1,4 +1,5 @@
 import React from "react";
+import AdminPannel from "../../../Components/AdminPannel/AdminPannel";
 import Review from "../../../Components/HomePage/Testimonial/Review";
 import Banner from "../Banner/Banner";
 
@@ -25,6 +26,7 @@ const Home = () => {
       </div>
       <div className="bg-slate-100">
         <Review />
+        <AdminPannel />
       </div>
     </>
   );
