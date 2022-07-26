@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const PurchaseManagement = () => {
-  const [data, setData] = useState(["a", "b", "c"]);
+  const [data, setData] = useState([]);
   return (
     <div className="mx-5">
       <h1 className="text-3xl my-3">Purchase Management</h1>
