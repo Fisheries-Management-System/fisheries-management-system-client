@@ -1,7 +1,13 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 
 const PurchaseManagement = () => {
   const [data, setData] = useState([]);
+  useEffect(() => {
+    fetch("data.json")
+      .then((res) => res.json())
+      .then((result) => setData(result));
+  }, []);
   return (
     <div className="mx-5">
       <h1 className="text-3xl my-3">Purchase Management</h1>
@@ -15,14 +21,18 @@ const PurchaseManagement = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td className="border px-4 py-2 text-center">1</td>
-            <td className="border px-4 py-2 text-center">Adam</td>
-            <td className="border px-4 py-2 text-center">
-              858 <span>TK</span>
-            </td>
-            <td className="border px-4 py-2 text-center">858</td>
-          </tr>
+          {data.map((d) => (
+            <>
+              <tr>
+                <td className="border px-4 py-2 text-center">1</td>
+                <td className="border px-4 py-2 text-center">Adam</td>
+                <td className="border px-4 py-2 text-center">
+                  858 <span>TK</span>
+                </td>
+                <td className="border px-4 py-2 text-center">858</td>
+              </tr>
+            </>
+          ))}
         </tbody>
       </table>
     </div>

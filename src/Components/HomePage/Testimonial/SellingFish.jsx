@@ -4,6 +4,10 @@ import "./SellingFish.css";
 const SellingFish = () => {
   const [fishes, setFishes] = useState([]);
 
+  const handleDetails = () => {
+    
+  };
+
   useEffect(() => {
     fetch("sellingFishData.json")
       .then((res) => res.json())
@@ -39,7 +43,7 @@ const SellingFish = () => {
                 </p>
               </div>
               <div className="fish-button-container">
-                <button className="fish-button">
+                <button onClick={() => handleDetails()} className="fish-button">
                   {" "}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
