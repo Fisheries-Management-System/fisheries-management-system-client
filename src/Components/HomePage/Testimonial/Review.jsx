@@ -1,6 +1,6 @@
 // import Swiper core and required modules
 import { Navigation, Pagination, Autoplay } from "swiper";
-import reviewData from "../../../Data/reviewData";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
@@ -9,18 +9,32 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
+import { useQuery } from "react-query";
+
 const Review = () => {
+  const { data: reviews, isLoading } = useQuery("review", () =>
+    fetch("https://pure-atoll-99669.herokuapp.com/reviews", {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    }).then((res) => res.json())
+  );
+  if (isLoading) {
+    return <p>Loading........</p>;
+  }
+
   return (
     <>
-      <div className="pt-2">
+      <div className="pt-28">
         <div className="mt-10  container mx-auto bg-white flex flex-col md:flex-row shadow-lg overflow-hidden ">
           <div className=" w-[100%] relative hidden  py-2 md:py-24 bg-indigo-700 md:w-1/2 lg:flex flex-col item-center justify-center">
             <div className="absolute top-0 left-0 z-10 grid-indigo w-16 h-16 md:w-40 md:h-40 md:ml-20 md:mt-24"></div>
 
             <div className="relative  text-2xl md:text-3xl lg:text-4xl py-2 px-6 md:py-6 md:px-1  md:mx-auto text-indigo-100 font-semibold leading-tight tracking-tight mb-0 z-20">
-              <p className="md:block leading-10">What People</p>
-              <p className=" leading-10 my-3">Saying</p>
-              <p className="block leading-10">About US!</p>
+              <p className="md:block leading-10">Admin Gives</p>
+              <p className=" leading-10 my-3">Review</p>
+              <p className="block leading-10">Employees</p>
             </div>
           </div>
           <div className="w-[100%] px-5 lg:px-0 lg:w-[50%]">
@@ -39,7 +53,7 @@ const Review = () => {
               }}
               className="mySwiper"
             >
-              {reviewData.map((review) => (
+              {reviews.map((review) => (
                 <SwiperSlide key={review._id}>
                   <div className="bg-white min-h-full">
                     <div className="flex flex-col h-full relative">
@@ -56,7 +70,7 @@ const Review = () => {
                       <div className="h-full relative z-10">
                         <div>
                           <p className="text-gray-600 serif font-normal italic px-6 py-6 md:px-16 md:py-10 text-xl md:text-2xl">
-                            {review?.name}
+                            {review?.review}
                           </p>
                         </div>
                       </div>
@@ -72,7 +86,7 @@ const Review = () => {
                             Review Gives {review?.rate} Star
                           </h2>
                           <h2 className="text-sm md:text-base text-center font-bold text-gray-700 leading-tight">
-                            {review?.description}
+                            {review?.name}
                           </h2>
                         </div>
                       </div>

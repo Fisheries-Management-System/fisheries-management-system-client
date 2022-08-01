@@ -51,6 +51,16 @@ const Header = ({ user, setUser, reload }) => {
             >
               About Us
             </NavLink>
+           <NavLink
+              to="/blogs"
+              className={({ isActive }) =>
+                isActive
+                  ? "p-2 lg:px-4 md:mx-2 text-white rounded hover:bg-gray-200 hover:text-gray-500 bg-yellow-500"
+                  : "p-2 lg:px-4 md:mx-2 text-white rounded hover:bg-gray-200 hover:text-gray-500 "
+              }
+            >
+              Blogs
+            </NavLink>
             <NavLink
               to="/faqs"
               className={({ isActive }) =>
@@ -130,7 +140,7 @@ const Header = ({ user, setUser, reload }) => {
                 onClick={handleSignOut}
                 className="lg:hidden p-2 lg:px-4 md:mx-2 text-teal-600 text-center border border-solid border-teal-500 rounded  transition-colors duration-300 mt-1 md:mt-0 md:ml-1 hover:bg-teal-500  hover:text-white"
               >
-                Signout
+                Sign Out
               </button>
             ) : (
               <div className="font-semibold">
@@ -153,6 +163,16 @@ const Header = ({ user, setUser, reload }) => {
                   }
                 >
                   Employee Login
+                </NavLink>
+                <NavLink
+                  to="/user-login"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "p-2 lg:px-4 md:mx-2  text-center border border-solid border-teal-600 rounded  transition-colors duration-300 mt-1 md:mt-0 md:ml-1 bg-teal-600 text-white"
+                      : "p-2 lg:px-4 md:mx-2 text-teal-600 text-center border border-solid border-teal-600 rounded  transition-colors duration-300 mt-1 md:mt-0 md:ml-1"
+                  }
+                >
+                  User Login
                 </NavLink>
               </div>
             )}
