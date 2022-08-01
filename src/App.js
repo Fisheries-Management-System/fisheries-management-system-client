@@ -1,5 +1,6 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import About from "./Pages/About/About";
+import EmployeeLogin from "./Pages/Authentication/Login/EmployeeLogin";
 import Home from "./Pages/HomePage/Home/Home";
 import PurchaseManagement from "./Pages/PurchaseMangement/PurchaseManagement";
 import SellingFishManagement from "./Pages/SellingFishMangement/SellingFishManagement";
@@ -23,6 +24,10 @@ function App() {
           <Route
             path="/sellingFishManagement"
             element={<SellingFishManagement></SellingFishManagement>}
+          />
+          <Route
+            path="/employee-login"
+            element={<EmployeeLogin></EmployeeLogin>}
           />
         </Routes>
       </div>
