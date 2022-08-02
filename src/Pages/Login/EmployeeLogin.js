@@ -1,70 +1,150 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
-const EmployeeLogin = () => {
+import { toast } from "react-toastify";
+
+const EmployeeLogin = ({ setreload }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+
+  const [userLoginData, setUserLoginData] = useState({
+    employeeID: "",
+    password: "",
+  });
+
+  let errorText;
+  let name, value;
+  const getUserData = (e) => {
+    name = e.target.name;
+    value = e.target.value;
+    setUserLoginData({ ...userLoginData, [name]: value });
+    e.preventDefault();
+  };
+
+  // condition
+
+  const handleLoginFormSubmit = async (e) => {
+    e.preventDefault();
+    const { employeeID, password } = userLoginData;
+
+    if (employeeID && password) {
+      fetch(`http://localhost:5000/employee-login`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(userLoginData),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.employeeID) {
+            localStorage.setItem("employee", JSON.stringify(data));
+            setreload(true);
+            navigate("/");
+            return toast.success("লগিন সফল হয়েছে।", {
+              toastId: "employeeLoginSuccess",
+            });
+          }
+          if (data.error) {
+            toast.error(data.error, {
+              toastId: "employeeLoginError",
+            });
+          } else {
+            toast.error("Something Went worng! try again latter.", {
+              toastId: "employeeLoginWrong",
+            });
+          }
+        });
+    }
+  };
   return (
-    <div className="h-screen w-full px-48 bg-gray-200 flex items-center ">
-      <div className=" grid grid-cols-1 lg:grid-cols-5 shadow-md rounded border-3 mx-auto  ">
-        <div className="bg-blue-500 rounded p-5 text-center text-white col-span-2">
-          <h1 className="text-3xl font-bold">Fisheries Management</h1>
-          <p className="text-gray-300">
-            <small>
-              Hello Employee, You Have To Login First. We Give All of Our Employee An Employee ID And Password. Enter Your Employee And Password For
-            </small>
-          </p>
-          <br />
-          <h2 className="text-gray-100">Are You Admin? Login here.</h2>
-          <h2 className="text-gray-100 underline">
-            <a href="#">Admin Login</a>
-          </h2>
-          <p className="text-gray-300">
-            <small>
-              Read our <a href="#">terms</a> and <a href="#">conditions</a>
-            </small>
-          </p>
-        </div>
-        <div className="p-5 col-span-3 bg-white">
-          <div>
-            <form class="">
-              <h3 className="text-2xl font-semibold text-center mb- ">Employee Login</h3>
-              <div class="mb-4">
-                <label class="block text-gray-500 text-sm font-bold mb-2" for="username">
+    <>
+      <div className="flex items-center min-h-screen p-4 bg-gray-100 lg:justify-center">
+        <div className="flex flex-col overflow-hidden bg-white rounded-md shadow-lg max md:flex-row md:flex-1 lg:max-w-screen-md">
+          <div className="p-4 py-6 text-white bg-blue-500 md:w-80 md:flex-shrink-0 md:flex md:flex-col md:items-center md:justify-evenly">
+            <div className="my-3 text-4xl font-bold tracking-wider text-center">
+              <h1>Fisheries Mangement</h1>
+            </div>
+            <p className="mt-6 font-normal capitalize text-center text-gray-300 md:mt-0">
+              Hello Employee, You have to login first. We give all of our employee an Employee ID addreess and password. Enter your Employee ID and
+              password for login.
+            </p>
+            <p className="flex flex-col items-center justify-center mt-10 text-center">
+              <span>Are you Admin? Login here.</span>
+              <Link to="/admin-login" className="underline">
+                Admin Login
+              </Link>
+            </p>
+            <p className="mt-6 text-sm text-center text-gray-300">
+              Read our{" "}
+              <a href="/" target="__blank" className="underline">
+                terms
+              </a>{" "}
+              and{" "}
+              <a href="/" target="__blank" className="underline">
+                conditions
+              </a>
+            </p>
+          </div>
+          <div className="p-5 bg-white md:flex-1">
+            <h3 className="my-4 text-2xl text-center font-semibold text-gray-700">Employee Login</h3>
+            <form onSubmit={handleLoginFormSubmit} className="flex flex-col space-y-5">
+              <div className="flex flex-col space-y-1">
+                <label htmlFor="employeeID" className="text-sm font-semibold text-gray-500">
                   Employee ID
                 </label>
                 <input
-                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="username"
-                  type="text"
-                  placeholder="Enter Employee ID"
+                  type="employeeID"
+                  id="employeeID"
+                  name="employeeID"
+                  value={userLoginData.employeeID}
+                  placeholder="Enter Your Employee ID"
+                  onChange={getUserData}
+                  required
+                  className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 "
                 />
               </div>
-              <div class="mb-6">
-                <label class="block text-gray-500 text-sm font-bold mb-2" for="password">
-                  Employee Password
-                </label>
+              <div className="flex flex-col space-y-1">
+                <div className="flex items-center justify-between">
+                  <label htmlFor="password" className="text-sm font-semibold text-gray-500">
+                    Employee Password
+                  </label>
+                </div>
                 <input
-                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                  id="password"
                   type="password"
-                  placeholder="Password"
+                  name="password"
+                  value={userLoginData.password}
+                  id="password"
+                  placeholder="password"
+                  onChange={getUserData}
+                  required
+                  className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
                 />
-                <label class="md:w-2/3 block text-gray-500 font-bold">
-                  <input class="mr-2 leading-tight" type="checkbox" />
-                  <span class="text-sm">Remember me</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <input type="checkbox" id="remember" className="w-4 h-4 transition duration-300 rounded focus:outline-none " />
+                <label htmlFor="remember" className="text-sm font-semibold text-gray-500">
+                  Remember me
                 </label>
               </div>
-              <div class="flex items-center justify-between">
+              <div>
                 <button
-                  class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                  type="button"
+                  type="submit"
+                  className="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-blue-500 rounded-md shadow hover:bg-blue-600 focus:outline-none "
                 >
-                  Log In
+                  Log in
                 </button>
               </div>
             </form>
           </div>
         </div>
       </div>
-    </div>
+      {errorText &&
+        toast.error(errorText, {
+          toastId: "loginErrortext",
+        })}
+    </>
   );
 };
 
