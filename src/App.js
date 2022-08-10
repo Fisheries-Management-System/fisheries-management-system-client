@@ -39,24 +39,14 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/faqs" element={<FAQs />} />
           <Route path="/about" element={<About />} />
-          <Route
-            path="/admin-login"
-            element={<AdminLogin setReload={setReload} />}
-          />
-          <Route
-            path="/employee-login"
-            element={<EmployeeLogin setReload={setReload} />}
-          />
+          <Route path="/admin-login" element={<AdminLogin setReload={setReload} />} />
+          <Route path="/employee-login" element={<EmployeeLogin setReload={setReload} />} />
           <Route path="/addemployee" element={<AddEmployee />} />
           <Route
             path="/dashboard"
             element={
               <RequireAuth>
-                <Dashboard
-                  user={user}
-                  setUser={setUser}
-                  setReload={setReload}
-                />
+                <Dashboard user={user} setUser={setUser} setReload={setReload} />
               </RequireAuth>
             }
           >
@@ -142,7 +132,6 @@ function App() {
             />
             <Route path="*" element={<PageNotFound />} />
           </Route>
-          <Route path="*" element={<PageNotFound />} />
         </Routes>
         <Footer></Footer>
       </div>
